@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<textarea>
+                                                                                #Ders:003
+
+1-Entity Layer (Projenin sql tarafındaki tabloların, sütunların tanımlanacağı katman)
+2-Data Access Layer (Veri erişim katmanı - Crud işlemlerinin temeli burada tanımlanacak)
+3-Business Layer (İş katmanı - işlemleri sunum katmanına yansıtmadan önce koşullandırma için kullanılan katman)
+4-Presentation Layer -User Interface
+
+---Entity---
+Başlıklar (Tablo) ->Sınıf
+
+Başlık ID ->Property
+Başlık İsim ->Property
+Başlık Tarih ->Prop
+Başlık Yazar ->Prop
+
+---DAL---
+CRUD
+Create Read Update Delete
+
+                                                                                #Ders: 004
+
+EntityLayer-Sınıf tanımlamaları
+[Tablolar]
+->Heading -Başlık
+->Content -İçerik
+->Writer -Yazar
+->Contact -İletişim
+->About -Hakkında
+
+--Somut olarak tutulan ifadeler Concrete klasörü içerisinde tutulur.
+
+*Sınıf alanları
+Heading
+ID-Name-Date-/*Writer*/
+
+Content
+ID-Value-Date-/*Writer-Başlık*/
+
+Writer
+ID-Name-Surname-Image-Mail-Password
+
+                                                                                #Ders: 005
+
+**Category**
+ID-Name-Description-Status
+
+About
+ID-Details1-Details2-Image1-Image2
+
+Contact
+ID-UserName-UserMail-Subject-Message
+
+                                                                                #Ders: 006-7
+
+Category-Writer-Content-Heading Tablolarında ilişki kullanacağız.
+
+Category<->Heading
+Heading<->Content
+Writer <->Heading
+Writer <->Content
+    </->
+    
+                                                                                #Ders: 008
+Attribute (Key-StringLength) köşeli parantez içerisine yazılır!
+    
+                                                                                #Ders: 009
+**Concrete -> DAL ->Context
+    
+                                                                                #Ders: 010
+Web.config -> Connection string tanımlaması
+
+                                                                                #Ders: 011
+package manager console -> Migrations (Tabloları veri tabanına yansıtma)
+
+                                                                                #Ders: 012-13
+SSMS'de tablolarımızı doldurduk
+
+                                                                                #Ders: 014
+Abstract ve Interface bileşenleri
+
+</textarea>
