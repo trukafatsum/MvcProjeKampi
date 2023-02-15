@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<div class="card-group" style="margin:1%">
+    <div class="card text-white bg-gradient-cyan mx-3" style="max-width:18em">
+        <div class="card-body text-center">
+            <h1 class="card-text">@ViewBag.CategoryCount</h1>
+            <h4 class="card-title">TOPLAM KATEGORİ SAYISI</h4>
+        </div>
+    </div>
+    <div class="card text-white bg-gradient-teal mx-3" style="max-width:18em">
+        <div class="card-body text-center">
+            <h1 class="card-text">@ViewBag.Heading</h1>
+            <h4 class="card-title">YAZILIM KATEGORİSİNE AİT BAŞLIK SAYISI</h4>
+        </div>
+    </div>
+    <div class="card text-white bg-gradient-indigo mx-3" style="max-width:18em">
+        <div class="card-body text-center">
+            <h1 class="card-text">@ViewBag.Writer</h1>
+            <h4 class="card-title">ADINDA "A" HARFİ GEÇEN YAZAR SAYISI</h4>
+        </div>
+    </div>
+</div>
+<div class="card-group" style="margin:1%">
+    <div class="card text-white bg-gradient-info mx-3" style="max-width:18em">
+        <div class="card-body text-center">
+            <h1 class="card-text">@ViewBag.HeadingMax</h1>
+            <h4 class="card-title">EN FAZLA BAŞLIĞA SAHİP KATEGORİ SAYISI</h4>
+        </div>
+    </div>
+    <div class="card text-white bg-gradient-green mx-3" style="max-width:18em; height:auto">
+        <div class="card-body text-center">
+            <h1 class="card-text">@ViewBag.StatusGap</h1>
+            <h4 class="card-title">KATEGORİ TABLOSUNDADURUMU T/F OLANLARIN FARKI</h4>
+        </div>
+    </div>
+</div>
+
+
