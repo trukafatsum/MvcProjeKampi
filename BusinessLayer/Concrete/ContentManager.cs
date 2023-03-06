@@ -38,14 +38,19 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public List<Content> GetList()
+        public List<Content> GetListByWriter()
         {
-            throw new NotImplementedException();
+            return _contentDal.List(x => x.WriterID == 4);
         }
 
         public List<Content> GetListByHeadingID(int id)
         {
             return _contentDal.List(x => x.HeadingID == id);
+        }
+
+        public List<Content> GetList()
+        {
+            throw new NotImplementedException();
         }
     }
 }
