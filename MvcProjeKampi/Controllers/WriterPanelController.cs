@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
@@ -6,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -13,15 +16,17 @@ namespace MvcProjeKampi.Controllers
     {
         HeadingManager hm = new HeadingManager(new EFHeadingDAL());
         CategoryManager cm = new CategoryManager(new EFCategoryDAL());
+        Context c = new Context();
 
         public ActionResult WriterProfile()
         {
             return View();
         }
-        public ActionResult MyHeading()
+        public ActionResult MyHeading(string p)
         {
-            //id = 4;
-            var values = hm.GetListByWriter();
+            p = (string)Session["WriterMail"];
+            var writerIdInfo = c.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
+            var values = hm.GetListByWriter(writerIdInfo);
             return View(values);
         }
         [HttpGet]
@@ -39,8 +44,10 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewHeading(Heading p)
         {
+            string z = (string)Session["WriterMail"];
+            var writerIdInfo = c.Writers.Where(x => x.WriterMail == z).Select(y => y.WriterID).FirstOrDefault();
+            p.WriterID = writerIdInfo;
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.WriterID = 4;
             p.HeadingStatus = true;
             hm.HeadingAdd(p);
             return RedirectToAction("MyHeading");
@@ -70,6 +77,15 @@ namespace MvcProjeKampi.Controllers
             headingValue.HeadingStatus = false;
             hm.HeadingDelete(headingValue);
             return RedirectToAction("MyHeading");
+        }
+        public ActionResult AllHeading(int p = 1)
+        {
+            var headings = hm.GetList().ToPagedList(p,10);
+            return View(headings);
+        }
+        public ActionResult ToDoList()
+        {
+            return View();
         }
     }
 }
