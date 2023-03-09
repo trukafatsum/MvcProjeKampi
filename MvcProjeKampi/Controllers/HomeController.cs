@@ -31,5 +31,10 @@ namespace MvcProjeKampi.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        public ActionResult Homepage()
+        {
+            return View();
+        }
     }
 }

@@ -16,10 +16,11 @@ namespace MvcProjeKampi.Controllers
     {
         MessageManager mm = new MessageManager(new EFMessageDAL());
         MessageValidator messageValidator = new MessageValidator();
-
+        Context c = new Context();
         public ActionResult Inbox()
         {
-            var messagelist = mm.GetListInbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = mm.GetListInbox(p);
             return View(messagelist);
         }
         public PartialViewResult MessageMenu()
@@ -28,7 +29,8 @@ namespace MvcProjeKampi.Controllers
         }
         public ActionResult Sendbox()
         {
-            var messagelist = mm.GetListSendbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = mm.GetListSendbox(p);
             return View(messagelist);
         }
         public ActionResult GetInboxDetails(int id)
@@ -54,7 +56,8 @@ namespace MvcProjeKampi.Controllers
             ValidationResult result = messageValidator.Validate(p);
             if (result.IsValid)
             {
-                p.SenderMail = "admin@gmail.com";
+                string sender = (string)Session["WriterMail"];
+                p.SenderMail = sender;
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 mm.MessageAdd(p);
                 return RedirectToAction("Sendbox");
