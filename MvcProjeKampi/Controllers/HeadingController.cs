@@ -14,8 +14,13 @@ namespace MvcProjeKampi.Controllers
         HeadingManager hm = new HeadingManager(new EFHeadingDAL());
         CategoryManager cm = new CategoryManager(new EFCategoryDAL());
         WriterManager wm = new WriterManager(new EFWriterDAL());
-
+        
         public ActionResult Index()
+        {
+            var headingValues = hm.GetList();
+            return View(headingValues);
+        }
+        public ActionResult HeadingReport()
         {
             var headingValues = hm.GetList();
             return View(headingValues);
