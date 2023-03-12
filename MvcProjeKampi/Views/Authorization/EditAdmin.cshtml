@@ -1,26 +1,25 @@
 ﻿@model EntityLayer.Concrete.Admin
-
 @{
     ViewBag.Title = "EditAdmin";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 <br />
 <h2>Admin Güncelleme Sayfası</h2>
 @using (Html.BeginForm("EditAdmin", "Authorization", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Hidden("Admin ID")
         @Html.HiddenFor(x => x.AdminID, new { @class = "form-control" })
+        @Html.HiddenFor(c => c.AdminPassword, new { @class = "form-control" })
+        @Html.HiddenFor(c => c.AdminUsername, new { @class = "form-control" })
         <br />
         @Html.Label("Admin Kullanıcı Adı")
-        @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
+        @Html.TextBoxFor(c => c.AdminUsername, new { @class = "form-control" })
         <br />
-        @Html.Label("Şifre")
-        @Html.TextAreaFor(x => x.AdminPassword, new { @class = "form-control" })
+        @Html.Label("Admin Şifre")
+        @Html.TextBoxFor(c => c.AdminPassword, new { @class = "form-control" })
         <br />
-        @Html.Label("Rol")
-        @Html.TextAreaFor(x => x.AdminRole, new { @class = "form-control" })
+        @Html.Label("Admin Rolü")
+        @Html.DropDownListFor(c => c.RoleId, (List<SelectListItem>)ViewBag.valueadmin, new { @class = "form-control" })
         <br />
         <button class="btn btn-success">Güncelle</button>
     </div>

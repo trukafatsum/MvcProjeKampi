@@ -60,6 +60,8 @@
     <Compile Include="Abstract\IImageFileDAL.cs" />
     <Compile Include="Abstract\IMessageDAL.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRoleDAL.cs" />
+    <Compile Include="Abstract\ITalentCardDAL.cs" />
     <Compile Include="Abstract\IWriterDAL.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="EntityFramework\EFHeadingDAL.cs" />
     <Compile Include="EntityFramework\EFImageFileDAL.cs" />
     <Compile Include="EntityFramework\EFMessageDAL.cs" />
+    <Compile Include="EntityFramework\EFRoleDAL.cs" />
+    <Compile Include="EntityFramework\EFTalentCardDAL.cs" />
     <Compile Include="EntityFramework\EFWriterDAL.cs" />
     <Compile Include="Migrations\202302131223482_mig1.cs" />
     <Compile Include="Migrations\202302131223482_mig1.designer.cs">
@@ -115,6 +119,14 @@
     <Compile Include="Migrations\202302262145265_mig_admin_tbl.cs" />
     <Compile Include="Migrations\202302262145265_mig_admin_tbl.designer.cs">
       <DependentUpon>202302262145265_mig_admin_tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303121458059_mig_admin_role_rback.cs" />
+    <Compile Include="Migrations\202303121458059_mig_admin_role_rback.designer.cs">
+      <DependentUpon>202303121458059_mig_admin_role_rback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303121534270_mig_talentcard.cs" />
+    <Compile Include="Migrations\202303121534270_mig_talentcard.designer.cs">
+      <DependentUpon>202303121534270_mig_talentcard.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,6 +174,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202302262145265_mig_admin_tbl.resx">
       <DependentUpon>202302262145265_mig_admin_tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303121458059_mig_admin_role_rback.resx">
+      <DependentUpon>202303121458059_mig_admin_role_rback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303121534270_mig_talentcard.resx">
+      <DependentUpon>202303121534270_mig_talentcard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

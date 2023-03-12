@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
@@ -9,12 +10,14 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous]
     public class AuthorizationController : Controller
     {
-        AdminManager am = new AdminManager(new EFAdminDAL());
+        AdminManager adminManager = new AdminManager(new EFAdminDAL());
+        RoleManager roleManager = new RoleManager(new EFRoleDAL());
         public ActionResult Index()
         {
-            var adminValues = am.GetList();
+            var adminValues = adminManager.GetList();
             return View(adminValues);
         }
         [HttpGet]
@@ -25,20 +28,44 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult AddAdmin(Admin p)
         {
-            am.AdminAdd(p);
+            adminManager.AdminAdd(p);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult EditAdmin(int id)
         {
-            var adminValues = am.GetByID(id);
-            return View(adminValues);
+            List<SelectListItem> valueadminrole = (from c in roleManager.GetRoles()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = c.RoleName,
+                                                       Value = c.RoleId.ToString()
+
+                                                   }).ToList();
+
+            ViewBag.valueadmin = valueadminrole;
+            var adminvalue = adminManager.GetByID(id);
+            return View(adminvalue);
         }
 
         [HttpPost]
-        public ActionResult EditAdmin(Admin p)
+        public ActionResult EditAdmin(Admin admin)
         {
-            am.AdminUpdate(p);
+            admin.AdminStatus = true;
+            adminManager.AdminUpdate(admin);
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteAdmin(int id)
+        {
+            var result = adminManager.GetByID(id);
+            if (result.AdminStatus == true)
+            {
+                result.AdminStatus = false;
+            }
+            else
+            {
+                result.AdminStatus = true;
+            }
+            adminManager.AdminUpdate(result);
             return RedirectToAction("Index");
         }
     }
